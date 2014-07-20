@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140720220900) do
+ActiveRecord::Schema.define(version: 20140720230006) do
 
   create_table "checkins", force: true do |t|
     t.integer  "goal_id"
@@ -35,6 +35,8 @@ ActiveRecord::Schema.define(version: 20140720220900) do
   create_table "users", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "email"
+    t.string   "password_digest"
   end
 
 end

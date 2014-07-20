@@ -1,10 +1,8 @@
 Rails.application.routes.draw do
   resources :prizes
-
-  resources :goals
-
-  resources :users
-
+  resources :users do
+    resources :goals
+  end
   root 'pages#home'
 
   # The priority is based upon order of creation: first created -> highest priority.
