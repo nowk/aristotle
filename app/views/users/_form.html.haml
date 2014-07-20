@@ -1,0 +1,17 @@
+= form_for @user do |f|
+  - if @user.errors.any?
+    .error_explanation
+      %h2
+        = pluralize @user.errors.count, 'error'
+        prohibited this user from being saved:
+      %ul
+        - @user.errors.full_messages.each do |message|
+          %li= message
+  .field
+    = f.text_field :email, placeholder: 'Email'
+  .field
+    = f.text_field :password, placeholder: 'Password'
+  .field
+    = f.text_field :password_confirmation, placeholder: 'Password Confirmation'
+  .field
+    = f.submit 'Sign up'
