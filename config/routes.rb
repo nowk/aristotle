@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resources :prizes
   resources :sessions
+  resources :checkins, only: [:create, :destroy]
   resources :users do
     resources :goals
   end
