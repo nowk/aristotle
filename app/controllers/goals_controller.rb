@@ -19,6 +19,7 @@ class GoalsController < ApplicationController
 
   # GET /goals/1/edit
   def edit
+    @goal = Goal.find(params[:id])
   end
 
   # POST /goals
@@ -28,7 +29,7 @@ class GoalsController < ApplicationController
 
     respond_to do |format|
       if @goal.save
-        format.html { redirect_to @goal, notice: 'Goal was successfully created.' }
+        format.html { redirect_to user_goal_path(@goal), notice: 'Goal was successfully created.' }
         format.json { render :show, status: :created, location: @goal }
       else
         format.html { render :new }

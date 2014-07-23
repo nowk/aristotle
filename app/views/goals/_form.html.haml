@@ -13,4 +13,7 @@
   .field
     = f.text_area :description, placeholder: 'Description'
   .field
-    = f.submit 'Create Goal'
+    - if action_name === 'new'
+      = f.submit 'Create Goal'
+    - else
+      = f.submit 'Save Goal'
