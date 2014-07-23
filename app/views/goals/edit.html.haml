@@ -1,0 +1,6 @@
+%h1 Editing goal
+
+= render 'form'
+
+= link_to 'Show', user_goal_path(current_user, @goal)
+= link_to 'Back', user_goals_path(current_user)
