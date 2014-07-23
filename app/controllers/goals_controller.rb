@@ -20,7 +20,6 @@ class GoalsController < ApplicationController
 
   # GET /goals/1/edit
   def edit
-    @goal = Goal.find(params[:id])
   end
 
   # POST /goals
