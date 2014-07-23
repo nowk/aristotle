@@ -10,6 +10,7 @@ class GoalsController < ApplicationController
   # GET /goals/1
   # GET /goals/1.json
   def show
+    @checkins = @goal.checkins
   end
 
   # GET /goals/new
