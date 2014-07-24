@@ -6,6 +6,6 @@
     = f.submit 'Set time zone'
 
 
-= link_to 'New Goal', new_user_goal_path(@user.id)
+= link_to 'My Goals', user_goals_path(@user.id)
 = link_to 'Edit', edit_user_path(@user)
 = link_to 'Back', users_path
