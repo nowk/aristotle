@@ -11,6 +11,7 @@ class GoalsController < ApplicationController
   # GET /goals/1.json
   def show
     @checkins = @goal.checkins
+    @today = Date.current 
   end
 
   # GET /goals/new

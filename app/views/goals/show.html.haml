@@ -4,5 +4,14 @@
 %p= @goal.description
 %p Number of Checkins: #{@checkins.count}
 
+.day
+  %h2= @today
+  .checkin
+    - if @goal.checked_in?(Time.now)
+      Already checked in
+    - else
+      = check_box_tag 'Check In'
+      %label Check In for Today
+
 = link_to 'Edit', edit_user_goal_path(current_user, @goal)
 = link_to 'Back', user_goals_path(current_user)
