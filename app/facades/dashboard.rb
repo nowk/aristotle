@@ -7,6 +7,10 @@ class Dashboard
     @goals = @user.goals
   end
 
+  def timezones
+    @timezones ||= ActiveSupport::TimeZone.us_zones.map { |z| z.name }
+  end
+
   private
 
     attr_reader :user
