@@ -1,0 +1,8 @@
+.day
+  %h2= @date
+  .checkin
+    - if @goal.checked_in?(@date)
+      Already checked in
+    - else
+      = check_box_tag 'Check In'
+      %label Check In for Today
