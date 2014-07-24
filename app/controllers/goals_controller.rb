@@ -11,7 +11,7 @@ class GoalsController < ApplicationController
   # GET /goals/1.json
   def show
     @checkins = @goal.checkins
-    @today = Date.current 
+    @date = Date.strptime(params[:date_string], '%m%d%Y')
   end
 
   # GET /goals/new
