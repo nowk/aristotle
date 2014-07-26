@@ -2,7 +2,11 @@ class Goal < ActiveRecord::Base
   belongs_to :user
   has_many :checkins
 
-  def checked_in?(today)
-    checkins.where(created_at: today.beginning_of_day..today.end_of_day).any?
+  def get_checkin_for(day)
+    checkins.where(truncated_date: day.strftime('%Y-%m-%d'))
+  end
+
+  def checked_in?(day)
+    get_checkin_for(day).any?
   end
 end

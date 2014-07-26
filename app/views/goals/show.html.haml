@@ -1,10 +1,14 @@
-%p.notice= notice
-
 %h1= @goal.name
 %p= @goal.description
-%p Number of Checkins: #{@checkins.count}
+%p 
+  Number of Checkins: 
+  %span.checkin-count
+    #{@goal.checkins.count}
 
 = render partial: 'day', locals: { day: @date, goal: @goal }
 
 = link_to 'Edit', edit_user_goal_path(current_user, @goal)
 = link_to 'Back', user_goals_path(current_user)
+
+%script
+  var goalShow = new GoalSummary();

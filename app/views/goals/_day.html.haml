@@ -1,7 +1,7 @@
 .day
-  %h2= @date
-  .checkin
-    - if @goal.checked_in?(@date)
+  %h2= @goal_summary.date
+  .checkin{ :'data-goal_id' => @goal_summary.goal_id, :'data-checkin_id' => @goal_summary.todays_checkin.nil? ? '#' : @goal_summary.todays_checkin_id, :'data-date' => @goal_summary.date.strftime('%Y-%m-%d') }
+    - if @goal_summary.goal.checked_in?(@goal_summary.date)
       = check_box_tag 'Check In', '1', true
     - else
       = check_box_tag 'Check In'
