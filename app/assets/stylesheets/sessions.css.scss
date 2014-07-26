@@ -1,3 +1,48 @@
 // Place all the styles related to the session controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import 'constants';
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.table-container {
+  display: table;
+  height: 100%;
+  width: 100%;
+  .login-form {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    input {
+      width: 13%;
+      height: 35px;
+      background-color: $seashell;
+      border: none;
+      border-radius: 2px;
+      padding-left: 10px;
+    }
+    ::-webkit-input-placeholder {
+      text-transform: uppercase;
+      font-size: 1.1em;
+      font-family: $OpenSans;
+    }
+  }
+}
+
+.field.login {
+  button {
+    font-family: $OpenSans;
+    height: 35px;
+    width: 7%;
+    border: none;
+    text-transform: uppercase;
+    border-radius: 3px;
+    font-size: 0.8em;
+    color: #fff;
+    background-color: $flamenco;
+  }
+}
