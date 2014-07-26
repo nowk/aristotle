@@ -4,21 +4,27 @@
 
 @import 'constants';
 
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
 html, body {
   height: 100%;
   margin: 0;
 }
 
 .table-container {
-  display: table;
   height: 100%;
   width: 100%;
   .login-form {
-    display: table-cell;
-    vertical-align: middle;
-    text-align: center;
+    width: 15%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -130px;
+    margin-top: -80px;
     input {
-      width: 13%;
+      width: 100%;
       height: 35px;
       background-color: $seashell;
       border: none;
@@ -37,12 +43,30 @@ html, body {
   button {
     font-family: $OpenSans;
     height: 35px;
-    width: 7%;
+    width: 100%;
     border: none;
     text-transform: uppercase;
     border-radius: 3px;
     font-size: 0.8em;
     color: #fff;
     background-color: $flamenco;
+  }
+}
+
+.flash {
+  margin-bottom: 10px;
+  padding-left: 10px;
+  height: 35px;
+  padding-top: 8px;
+  border-radius: 3px;
+  font-size: 0.8em;
+  font-family: $OpenSans;
+  &.alert {
+    background-color: $geraldine;
+    color: $red-berry;
+  }
+  &.notice {
+    background-color: $reef;
+    color: $japanese-laurel;
   }
 }

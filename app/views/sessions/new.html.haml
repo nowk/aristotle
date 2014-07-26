@@ -1,5 +1,7 @@
 .table-container
   .login-form
+    - flash.each do |name, msg|
+      = content_tag :div, msg, class: "flash #{name}"
     = form_tag sessions_path do
       .field
         = text_field_tag :email, params[:email], placeholder: 'Email'
