@@ -10,8 +10,7 @@ class GoalsController < ApplicationController
   # GET /goals/1
   # GET /goals/1.json
   def show
-    @checkins = @goal.checkins
-    @date = Date.strptime(params[:date_string], '%m%d%Y')
+    @goal_summary = GoalSummary.new(@goal, params[:date_string])
   end
 
   # GET /goals/new
@@ -66,7 +65,7 @@ class GoalsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_goal
-      @goal = Goal.find(params[:id])
+      @goal ||= Goal.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -3,7 +3,7 @@ class CheckinsController < ApplicationController
 
   def create
     @goal = Goal.find(params[:goal_id])
-    @checkin = @goal.checkins.new
+    @checkin = @goal.checkins.new(truncated_date: params[:truncated_date])
 
     respond_to do |format|
       if @checkin.save
@@ -15,6 +15,13 @@ class CheckinsController < ApplicationController
   end
 
   def destroy
+    respond_to do |format|
+      if @checkin.destroy
+        format.json { render json: { status: 200, total_checkins: @goal.checkins.count } }
+      else
+        format.json { render json: { status: 500, total_checkins: @goal.checkins.count } }
+      end
+    end
   end
 
   private
