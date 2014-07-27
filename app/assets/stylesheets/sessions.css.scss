@@ -42,10 +42,10 @@ blockquote, h1 {
     &.signup {
       width: 35%;
       .field {
-        &:nth-of-type(2) {
+        &.first-name {
           float: left;
         }
-        &:nth-of-type(3) {
+        &.last-name {
           float:right;
         }
         &.first-name, &.last-name {

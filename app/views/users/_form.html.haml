@@ -2,16 +2,16 @@
   .stylish-form.signup
     - flash.each do |name, msg|
       = content_tag :div, msg, class: "flash #{name}"
-    = form_tag users_path do
+    = form_for @user do |f|
       .field.first-name
-        = text_field_tag :first_name, params[:first_name], placeholder: 'First name'
+        = f.text_field :first_name, placeholder: 'First name'
       .field.last-name
-        = text_field_tag :last_name, params[:last_name], placeholder: 'Last name'
+        = f.text_field :last_name, placeholder: 'Last name'
       .field
-        = text_field_tag :email, params[:email], placeholder: 'Email'
+        = f.text_field :email, placeholder: 'Email'
       .field
-        = password_field_tag :password, '', placeholder: 'Password'
+        = f.password_field :password, placeholder: 'Password'
       .field
-        = password_field_tag :password_confirmation, '', placeholder: 'Password Confirmation'
+        = f.password_field :password_confirmation, placeholder: 'Password Confirmation'
       .field.login
         = button_tag 'Sign Up'
