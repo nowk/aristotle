@@ -22,4 +22,11 @@
     font-family: $CrimsonText;
     line-height: 1.0em;
   }
+  p.source {
+    text-align: right;
+    font-size: 1.3em;
+    text-transform: uppercase;
+    font-family: $Yanone;
+    letter-spacing: 6px;
+  }
 }
