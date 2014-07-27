@@ -1,5 +1,5 @@
 .table-container
-  .login-form
+  .stylish-form.login
     - flash.each do |name, msg|
       = content_tag :div, msg, class: "flash #{name}"
     = form_tag sessions_path do

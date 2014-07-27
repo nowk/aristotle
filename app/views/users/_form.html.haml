@@ -1,17 +1,17 @@
-= form_for @user do |f|
-  - if @user.errors.any?
-    .error_explanation
-      %h2
-        = pluralize @user.errors.count, 'error'
-        prohibited this user from being saved:
-      %ul
-        - @user.errors.full_messages.each do |message|
-          %li= message
-  .field
-    = f.text_field :email, placeholder: 'Email'
-  .field
-    = f.text_field :password, placeholder: 'Password'
-  .field
-    = f.text_field :password_confirmation, placeholder: 'Password Confirmation'
-  .field
-    = f.submit 'Sign up'
+.table-container
+  .stylish-form.signup
+    - flash.each do |name, msg|
+      = content_tag :div, msg, class: "flash #{name}"
+    = form_tag users_path do
+      .field.first-name
+        = text_field_tag :first_name, params[:first_name], placeholder: 'First name'
+      .field.last-name
+        = text_field_tag :last_name, params[:last_name], placeholder: 'Last name'
+      .field
+        = text_field_tag :email, params[:email], placeholder: 'Email'
+      .field
+        = password_field_tag :password, '', placeholder: 'Password'
+      .field
+        = password_field_tag :password_confirmation, '', placeholder: 'Password Confirmation'
+      .field.login
+        = button_tag 'Sign Up'

@@ -20,7 +20,7 @@ blockquote, h1 {
 .table-container {
   height: 100%;
   width: 100%;
-  .login-form {
+  .stylish-form {
     width: 20%;
     position: absolute;
     top: 50%;
@@ -38,6 +38,20 @@ blockquote, h1 {
       text-transform: uppercase;
       font-size: 1.1em;
       font-family: $OpenSans;
+    }
+    &.signup {
+      width: 35%;
+      .field {
+        &:nth-of-type(2) {
+          float: left;
+        }
+        &:nth-of-type(3) {
+          float:right;
+        }
+        &.first-name, &.last-name {
+          width: 49%;
+        }
+      }
     }
   }
 }
