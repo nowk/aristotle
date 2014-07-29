@@ -9,6 +9,8 @@
     %link{ href: 'http://fonts.googleapis.com/css?family=Crimson+Text', rel: 'stylesheet', type:'text/css' }
     %link{ href: 'http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:200', rel:'stylesheet', type:'text/css' }
   %body
+    - flash.each do |name, msg|
+      = content_tag :div, msg, class: "flash #{name}"
     = yield
     - if current_user
       = link_to 'Logout', logout_path
