@@ -12,7 +12,7 @@ feature 'User logs in' do
     DatabaseCleaner.clean
   end
 
-  scenario 'proper email/password takes User to dashboard' do
+  scenario 'valid email/password takes User to dashboard' do
     visit '/login'
     fill_in 'email', with: 'john@example.com'
     fill_in 'password', with: 'password'
