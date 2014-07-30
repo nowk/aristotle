@@ -1,7 +1,5 @@
 require 'rails_helper'
 
-DatabaseCleaner.strategy = :truncation, { only: %w[users] }
-
 feature 'User logs in' do
   before(:each) do
     user = FactoryGirl.create(:user)
