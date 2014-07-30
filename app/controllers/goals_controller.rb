@@ -29,7 +29,7 @@ class GoalsController < ApplicationController
 
     respond_to do |format|
       if @goal.save
-        format.html { redirect_to user_goal_path(@goal), notice: 'Goal was successfully created.' }
+        format.html { redirect_to user_goal_path(current_user.id, @goal.id), notice: 'Goal was successfully created.' }
         format.json { render :show, status: :created, location: @goal }
       else
         format.html { render :new }
