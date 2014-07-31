@@ -1,13 +1,10 @@
 .new-goal-form
   = form_for [current_user, @goal] do |f|
     - if @goal.errors.any?
-      .error_explanation
-        %h2
-          = pluralize @goal.errors.count, 'error'
-          prohibited this goal from being saved:
+      .alert
         %ul
-          - @goal.errors.full_messsages.each do |message|
-            %li= message
+          - @goal.errors.full_messsages.each do |error|
+            %li= error
 
     .field
       = f.text_field :name, placeholder: 'Name of Goal'

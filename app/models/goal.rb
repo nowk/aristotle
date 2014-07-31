@@ -3,6 +3,7 @@ class Goal < ActiveRecord::Base
   has_many :checkins
 
   validates_presence_of :name
+  validates_uniqueness_of :name, scope: :user_id
 
   def get_checkin_for(day)
     checkins.where(truncated_date: day.strftime('%Y-%m-%d'))
