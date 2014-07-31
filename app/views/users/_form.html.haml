@@ -1,7 +1,10 @@
 .table-container
   .stylish-form.signup
-    - flash.each do |name, msg|
-      = content_tag :div, msg, class: "flash #{name}"
+    - if @user.errors.any?
+      .alert
+        %ul
+          - @user.errors.full_messages.each do |error|
+            %li= error
     = form_for @user do |f|
       .field.first-name
         = f.text_field :first_name, placeholder: 'First name'

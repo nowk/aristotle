@@ -3,5 +3,5 @@ class User < ActiveRecord::Base
   has_many :goals
 
   validates_uniqueness_of :email
-  validates_presence_of :email, :password, :password_confirmation
+  validates_presence_of :email, :password_confirmation
 end
