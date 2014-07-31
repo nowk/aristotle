@@ -14,6 +14,8 @@ feature 'User creates goal' do
     fill_in 'goal[name]', with: 'Foo Goal'
     click_button 'Create Goal'
     expect(page).to have_selector('.notice')
+    expect(page).to have_selector('.goal-index')
+    expect(page).to have_content('Foo Goal')
   end
 
 end
