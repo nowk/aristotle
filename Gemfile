@@ -37,6 +37,7 @@ group :test do
   gem 'capybara', '~> 2.4.1'
   gem 'database_cleaner', '~> 1.3.0'
   gem 'factory_girl_rails', '~> 4.4.1'
+  gem 'rack_session_access', '~> 0.1.1'
   gem 'launchy'
 end
 

@@ -3,10 +3,7 @@ require 'rails_helper'
 feature 'User creates goal' do
   before(:each) do
     user = FactoryGirl.create(:user)
-    visit login_path
-    fill_in 'email', with: user.email
-    fill_in 'password', with: 'password'
-    click_button 'Login'
+    page.set_rack_session(user_id: user.id)
     visit new_user_goal_path(user.id)
   end
 
