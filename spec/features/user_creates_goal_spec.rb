@@ -18,4 +18,8 @@ feature 'User creates goal' do
     expect(page).to have_content('Foo Goal')
   end
 
+  scenario 'clicking submit with an invalid name will display an error' do
+    click_button 'Create Goal'
+    expect(page).to have_selector('.alert')
+  end
 end
