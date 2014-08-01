@@ -12,22 +12,26 @@ describe User, 'validations' do
 
   it 'should not accept a blank email' do
     @user.email = ''
-    expect(@user).not_to be_valid
+    @user.valid?
+    expect(@user.errors.messages).to have_key(:email)
   end
 
   it 'should not accept a blank password' do
     @user.password = nil 
-    expect(@user).not_to be_valid
+    @user.valid?
+    expect(@user.errors.messages).to have_key(:password) 
   end
 
   it 'should not accept a blank password confirmation' do
     @user.password_confirmation = nil
-    expect(@user).not_to be_valid
+    @user.valid?
+    expect(@user.errors.messages).to have_key(:password_confirmation) 
   end
 
   it 'should not accept mismatching password and password confirmation fields' do
     @user.password = 'foo'
     @user.password_confirmation = 'bar'
-    expect(@user).not_to be_valid
+    @user.valid?
+    expect(@user.errors.messages).to have_key(:password_confirmation)
   end
 end
