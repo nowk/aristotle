@@ -5,6 +5,6 @@
       = hidden_field_tag 'goal_id', @goal_summary.goal.id
       = hidden_field_tag 'truncated_date', @goal_summary.date.strftime('%m%d%Y')
       - if @goal_summary.goal.checked_in? @goal_summary.date
-        = f.button 'Check Out', { rel: 'checkout' }
+        = link_to 'Check Out', checkin_path(@goal_summary.todays_checkin.id), method: 'delete', rel: 'checkout'
       - else
         = f.button 'Check In', { rel: 'checkin' }

@@ -1,6 +1,4 @@
 class CheckinsController < ApplicationController
-  before_action :set_checkin, only: [:destroy]
-
   def create
     @goal = Goal.find(params[:goal_id])
     @checkin = @goal.checkins.new(truncated_date: params[:truncated_date])
@@ -16,8 +14,11 @@ class CheckinsController < ApplicationController
   end
 
   def destroy
+    @checkin = Checkin.find(params[:id])
+    @goal = @checkin.goal
     respond_to do |format|
       if @checkin.destroy
+        format.html { redirect_to user_goal_path(current_user.id, @goal), notice: 'Checked out for today.' }
         format.json { render json: { status: 200, total_checkins: @goal.checkins.count } }
       else
         format.json { render json: { status: 500, total_checkins: @goal.checkins.count } }
@@ -26,10 +27,6 @@ class CheckinsController < ApplicationController
   end
 
   private
-    def set_checkin
-      @checkin = Checkin.find(params[:id])
-    end
-
     def checkin_params
       params[:goal].permit(:goal_id)
     end
