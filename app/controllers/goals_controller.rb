@@ -11,6 +11,8 @@ class GoalsController < ApplicationController
   # GET /goals/1.json
   def show
     @goal_summary = GoalSummary.new(@goal, params[:date_string])
+  rescue ArgumentError
+    raise ActionController::RoutingError.new 'Not Found'
   end
 
   # GET /goals/new

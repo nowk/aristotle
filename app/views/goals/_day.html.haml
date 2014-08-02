@@ -1,5 +1,5 @@
 .day
-  %h2= @goal_summary.date.strftime('%m-%d-%Y')
+  %h2.date{ rel: @goal_summary.date.strftime('%m%d%Y') }= @goal_summary.date.strftime('%m-%d-%Y')
   .checkin
     = form_for @goal_summary.checkin do |f|
       = hidden_field_tag 'goal_id', @goal_summary.goal.id
