@@ -7,6 +7,7 @@ class CheckinsController < ApplicationController
 
     respond_to do |format|
       if @checkin.save
+        format.html { redirect_to user_goal_path(current_user.id, @goal.id), notice: 'You just checked in! Great work!' }
         format.json { render json: { status: 200 } }
       else
         format.json { render json: { status: 500 } }

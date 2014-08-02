@@ -1,8 +1,10 @@
 .day
-  %h2= @goal_summary.date
-  .checkin{ :'data-goal_id' => @goal_summary.goal_id, :'data-checkin_id' => @goal_summary.todays_checkin.nil? ? '#' : @goal_summary.todays_checkin_id, :'data-date' => @goal_summary.date.strftime('%Y-%m-%d') }
-    - if @goal_summary.goal.checked_in?(@goal_summary.date)
-      = check_box_tag 'Check In', '1', true
-    - else
-      = check_box_tag 'Check In'
-    %label Check in for this date 
+  %h2= @goal_summary.date.strftime('%m-%d-%Y')
+  .checkin
+    = form_for @goal_summary.checkin do |f|
+      = hidden_field_tag 'goal_id', @goal_summary.goal.id
+      = hidden_field_tag 'truncated_date', @goal_summary.date.strftime('%m%d%Y')
+      - if @goal_summary.goal.checked_in? @goal_summary.date
+        = f.button 'Check Out', { rel: 'checkout' }
+      - else
+        = f.button 'Check In', { rel: 'checkin' }
