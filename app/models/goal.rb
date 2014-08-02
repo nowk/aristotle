@@ -8,6 +8,9 @@ class Goal < ActiveRecord::Base
 
   def get_checkin_for(day)
     checkins.where(truncated_date: day.strftime('%m%d%Y')).first
+  rescue NoMethodError
+    logger.error 'Argument must be a DateTime object.'
+    return false
   end
 
   def checked_in?(day)
