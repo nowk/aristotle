@@ -14,7 +14,7 @@ class GoalSummary
   end
 
   def todays_checkin
-    @todays_checkin ||= @goal.get_checkin_for(@date).first
+    @todays_checkin ||= @goal.get_checkin_for(@date)
   end
 
   def todays_checkin_id

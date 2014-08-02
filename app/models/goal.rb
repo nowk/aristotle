@@ -7,10 +7,10 @@ class Goal < ActiveRecord::Base
   validates_uniqueness_of :name, scope: :user_id
 
   def get_checkin_for(day)
-    checkins.where(truncated_date: day.strftime('%m%d%Y'))
+    checkins.where(truncated_date: day.strftime('%m%d%Y')).first
   end
 
   def checked_in?(day)
-    get_checkin_for(day).any?
+    get_checkin_for(day).present?
   end
 end
