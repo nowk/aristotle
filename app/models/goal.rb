@@ -7,7 +7,7 @@ class Goal < ActiveRecord::Base
   validates_uniqueness_of :name, scope: :user_id
 
   def get_checkin_for(day)
-    checkins.where(truncated_date: day.strftime('%m%d%Y')).first
+    checkins.find_by_truncated_date(day.strftime('%m%d%Y'))
   rescue NoMethodError
     logger.error 'Argument must be a DateTime object.'
     return false
