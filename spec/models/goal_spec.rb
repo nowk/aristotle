@@ -70,16 +70,16 @@ describe Goal, '#checked_in?(day)' do
   it 'should return true for an existing checkin' do
     FactoryGirl.create :checkin
     result = @goal.checked_in? DateTime.now
-    expect(result).to be_an_instance_of TrueClass
+    expect(result).to be true
   end
 
   it 'should return false for a date with no checkin' do
     result = @goal.checked_in? DateTime.now
-    expect(result).to be_an_instance_of FalseClass
+    expect(result).to be false
   end
 
   it 'should return false for non-date objects' do
     result = @goal.checked_in? 'asdfasdf'
-    expect(result).to be_an_instance_of FalseClass
+    expect(result).to be false
   end
 end
