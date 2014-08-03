@@ -6,7 +6,7 @@ class Checkin < ActiveRecord::Base
 
   validate :valid_date
 
-  #validates_uniqueness_of :truncated_date, scope: :goal_id
+  validates_uniqueness_of :truncated_date, scope: :goal_id
  
   private
     def valid_date
