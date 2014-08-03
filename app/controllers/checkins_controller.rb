@@ -5,7 +5,7 @@ class CheckinsController < ApplicationController
 
     respond_to do |format|
       if @checkin.save
-        format.html { redirect_to user_goal_path(current_user.id, @goal.id), notice: 'You just checked in! Great work!' }
+        format.html { redirect_to goal_with_date_path(current_user.id, @goal.id, @checkin.truncated_date), notice: 'You just checked in! Great work!' }
         format.json { render json: { status: 200 } }
       else
         format.json { render json: { status: 500 } }
@@ -18,7 +18,7 @@ class CheckinsController < ApplicationController
     @goal = @checkin.goal
     respond_to do |format|
       if @checkin.destroy
-        format.html { redirect_to user_goal_path(current_user.id, @goal), notice: 'Checked out for today.' }
+        format.html { redirect_to goal_with_date_path(current_user.id, @goal, @checkin.truncated_date), notice: 'Checked out for today.' }
         format.json { render json: { status: 200, total_checkins: @goal.checkins.count } }
       else
         format.json { render json: { status: 500, total_checkins: @goal.checkins.count } }
