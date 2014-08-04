@@ -8,14 +8,14 @@ feature 'User can navigate date on show page' do
   end
 
   scenario 'User goes to show page and can navigate to next day' do
-    tomorrow = convert_to_s(DateTime.now.tomorrow)
+    tomorrow = convert_to_s(DateTime.tomorrow)
     visit user_goal_path(@user.id, @goal.id)
     click_link 'Next Day'
     expect(page).to have_selector ".date[rel='#{tomorrow}']"
   end
 
   scenario 'User goes to show page and can navigate to previous day' do
-    yesterday = convert_to_s(DateTime.now.yesterday)
+    yesterday = convert_to_s(DateTime.yesterday)
     visit user_goal_path(@user.id, @goal.id)
     click_link 'Previous Day'
     expect(page).to have_selector ".date[rel='#{yesterday}']"
