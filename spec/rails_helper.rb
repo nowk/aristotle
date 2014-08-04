@@ -7,6 +7,7 @@ require 'capybara/rspec'
 require 'capybara/rails'
 require 'database_cleaner'
 require 'rack_session_access/capybara'
+require 'helpers'
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -25,6 +26,8 @@ DatabaseCleaner.strategy = :truncation
 
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods  
+
+  config.include Helpers
 
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
