@@ -6,9 +6,10 @@
 
   %tbody
     - @goals.each do |goal|
-      %tr
+      %tr{ :'data-goal-id' => goal.id }
         %td= goal.name
         %td= goal.description
+        %td.total-checkins= goal.total_checkins 
         %td= link_to 'Show', user_goal_path(current_user, goal)
         %td= link_to 'Edit', edit_user_goal_path(current_user, goal)
         %td= link_to 'Destroy', [current_user, goal], method: :delete, data: { confirm: 'Are you sure?' }

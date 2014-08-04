@@ -16,4 +16,8 @@ class Goal < ActiveRecord::Base
   def checked_in?(day)
     get_checkin_for(day).present?
   end
+
+  def total_checkins
+    checkins.where(goal_id: self.id).count
+  end
 end
