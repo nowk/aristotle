@@ -6,8 +6,7 @@ describe Goal, 'validations' do
     goal.name = nil
 
     expect(goal).not_to be_valid
-    expect(goal.errors.messages[:name].count).to eq(1)
-    expect(goal.errors.messages[:name].first).to eq("can't be blank")
+    expect(goal.errors.messages[:name]).to include("can't be blank")
   end
 
   it 'should require the presence of user_id' do
@@ -15,8 +14,7 @@ describe Goal, 'validations' do
     goal.user_id = nil
 
     expect(goal).not_to be_valid
-    expect(goal.errors.messages[:user_id].count).to eq(1)
-    expect(goal.errors.messages[:user_id].first).to eq("can't be blank")
+    expect(goal.errors.messages[:user_id]).to include("can't be blank")
   end
 
   it 'should not create a goal with a duplicate name within a single user' do
@@ -26,8 +24,7 @@ describe Goal, 'validations' do
     duplicate_goal = FactoryGirl.build :goal
 
     expect(duplicate_goal).not_to be_valid
-    expect(duplicate_goal.errors.messages[:name].count).to eq(1)
-    expect(duplicate_goal.errors.messages[:name].first).to eq("has already been taken")
+    expect(duplicate_goal.errors.messages[:name]).to include("has already been taken")
   end
 
   it 'should allow different users to have goals of the same name' do
@@ -81,5 +78,25 @@ describe Goal, '#checked_in?(day)' do
   it 'should return false for non-date objects' do
     result = @goal.checked_in? 'asdfasdf'
     expect(result).to be false
+  end
+end
+
+describe Goal, '#total_checkins' do
+  before :each do
+    @goal = FactoryGirl.create :goal
+    FactoryGirl.create :checkin
+    FactoryGirl.create :checkin, { truncated_date: convert_to_s(1.day.ago) }
+    FactoryGirl.create :checkin, { truncated_date: convert_to_s(2.days.ago) }
+  end
+
+  it 'should return a count for only this goal' do
+    result = @goal.total_checkins 
+    expect(result).to eq(3)
+  end
+
+  it 'should not count checkins for a different goal_id' do
+    FactoryGirl.create :checkin, { goal_id: 2 }
+    result = @goal.total_checkins
+    expect(result).to eq(3)
   end
 end
