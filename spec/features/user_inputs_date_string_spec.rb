@@ -9,13 +9,13 @@ feature 'User inputs a date string to go to that date for a goal' do
   end
 
   scenario 'entering a valid date string' do
-    visit @url + '08182014'
+    visit goal_with_date_path(@user.id, @goal.id, '08182014')
     expect(page).to have_selector '.date[rel="08182014"]'
   end
 
   scenario 'entering no date string' do
     @date = DateTime.now.strftime('%m%d%Y')
-    visit @url
+    visit user_goal_path(@user.id, @goal.id)
     expect(page).to have_selector ".date[rel='#{@date}']"
   end
 

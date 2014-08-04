@@ -15,9 +15,7 @@ feature 'System remembers the date the User checked into/out of' do
   end
 
   scenario 'A user checks out on a date and is redirected to the same page' do
-    checkin = FactoryGirl.build :checkin
-    checkin.truncated_date = @past_date
-    checkin.save
+    checkin = FactoryGirl.create(:checkin, { truncated_date: @past_date })
     visit goal_with_date_path(@user.id, @goal.id, @past_date) 
     click_link 'Check Out'
     expect(page).to have_selector ".date[rel='#{@past_date}']"
