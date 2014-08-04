@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 FactoryGirl.define do
   factory :checkin do
     goal_id '1' 

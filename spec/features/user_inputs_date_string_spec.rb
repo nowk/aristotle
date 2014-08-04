@@ -14,7 +14,7 @@ feature 'User inputs a date string to go to that date for a goal' do
   end
 
   scenario 'entering no date string' do
-    @date = DateTime.now.strftime('%m%d%Y')
+    @date = convert_to_s(DateTime.now)
     visit user_goal_path(@user.id, @goal.id)
     expect(page).to have_selector ".date[rel='#{@date}']"
   end

@@ -5,7 +5,7 @@ feature 'System remembers the date the User checked into/out of' do
     @user = FactoryGirl.create :user
     @goal = FactoryGirl.create :goal
     page.set_rack_session(user_id: @user.id)
-    @past_date = 3.days.ago.strftime('%m%d%Y')
+    @past_date = convert_to_s(3.days.ago)
   end
 
   scenario 'A user checks in on a date and is redirected to the same page' do
