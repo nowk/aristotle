@@ -1,5 +1,6 @@
 class GoalsController < ApplicationController
   before_action :set_goal, only: [:show, :edit, :update, :destroy]
+  before_action :prevent_future_date, only: [:show]
 
   # GET /goals
   # GET /goals.json
@@ -11,8 +12,7 @@ class GoalsController < ApplicationController
   # GET /goals/1.json
   def show
     @goal_summary = GoalSummary.new(@goal, params[:date_string])
-  rescue ArgumentError
-    raise ActionController::RoutingError.new 'Not Found'
+  
   end
 
   # GET /goals/new
@@ -65,6 +65,14 @@ class GoalsController < ApplicationController
   end
 
   private
+    def prevent_future_date
+      if DateTime.strptime(params[:date_string], '%m%d%Y') > DateTime.now
+        params[:date_string] = DateTime.now.strftime('%m%d%Y')
+      end
+    rescue ArgumentError
+      raise ActionController::RoutingError.new 'Not Found'
+    end
+  
     # Use callbacks to share common setup or constraints between actions.
     def set_goal
       @goal ||= Goal.find(params[:id])
