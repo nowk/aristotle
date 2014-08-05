@@ -9,4 +9,5 @@
       - else
         = f.button 'Check In', { rel: 'checkin' }
   = link_to 'Previous Day', day_before(@goal_summary.date)
-  = link_to 'Next Day', day_after(@goal_summary.date) 
+  - unless is_today?
+    = link_to 'Next Day', day_after(@goal_summary.date) 

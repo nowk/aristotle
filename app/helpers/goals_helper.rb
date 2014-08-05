@@ -10,4 +10,8 @@ module GoalsHelper
   def day_before(date)
     "#{user_goal_path(current_user.id, @goal_summary.goal.id)}/#{date.yesterday.strftime('%m%d%Y')}"
   end
+
+  def is_today?
+    DateTime.now === @goal_summary.date
+  end
 end
