@@ -1,12 +1,6 @@
 require 'rails_helper'
 
 feature 'User can navigate date on show page' do
-  before :each do
-    @user = FactoryGirl.create :user
-    @goal = FactoryGirl.create :goal
-    page.set_rack_session(user_id: @user.id)
-  end
-
   scenario 'User goes to show page and can navigate to next day if on a past date' do
     today = convert_to_s(DateTime.now)
     visit goal_with_date_path(@user.id, @goal.id, convert_to_s(DateTime.yesterday))

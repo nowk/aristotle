@@ -2,9 +2,6 @@ require 'rails_helper'
 
 feature 'System remembers the date the User checked into/out of' do
   before(:each) do
-    @user = FactoryGirl.create :user
-    @goal = FactoryGirl.create :goal
-    page.set_rack_session(user_id: @user.id)
     @past_date = convert_to_s(3.days.ago)
   end
 

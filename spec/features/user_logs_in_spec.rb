@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'User logs in' do
+feature 'User logs in', skip_before: true do
   before(:each) do
     user = FactoryGirl.create(:user)
     visit login_path

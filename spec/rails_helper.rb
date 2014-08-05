@@ -9,6 +9,8 @@ require 'database_cleaner'
 require 'rack_session_access/capybara'
 require 'helpers'
 
+include Capybara::DSL
+
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end
@@ -59,8 +61,14 @@ RSpec.configure do |config|
     DatabaseCleaner.strategy = :truncation
   end
 
-  config.before(:each) do 
+  config.before(:each) do |example|
     DatabaseCleaner.start
+
+    unless example.metadata[:skip_before]
+      @user = FactoryGirl.create :user
+      @goal = FactoryGirl.create :goal
+      page.set_rack_session(user_id: @user.id)
+    end
   end
 
   config.after(:each) do

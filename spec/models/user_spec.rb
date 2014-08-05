@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe User, 'validations' do
+describe User, 'validations', skip_before: true do
   before(:each) do
     @user = FactoryGirl.create(:user)
   end

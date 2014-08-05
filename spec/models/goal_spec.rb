@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Goal, 'validations' do
+describe Goal, 'validations', skip_before: true do
   it 'should not create a goal with a blank name' do
     goal = FactoryGirl.build :goal
     goal.name = nil
@@ -37,7 +37,7 @@ describe Goal, 'validations' do
   end
 end
 
-describe Goal, '#get_checkin_for(day)' do
+describe Goal, '#get_checkin_for(day)', skip_before: true do
   before(:each) do
     @goal = FactoryGirl.create :goal
     @checkin = FactoryGirl.create :checkin
@@ -59,7 +59,7 @@ describe Goal, '#get_checkin_for(day)' do
   end
 end
 
-describe Goal, '#checked_in?(day)' do
+describe Goal, '#checked_in?(day)', skip_before: true do
   before(:each) do
     @goal = FactoryGirl.create :goal
   end
@@ -81,7 +81,7 @@ describe Goal, '#checked_in?(day)' do
   end
 end
 
-describe Goal, '#total_checkins' do
+describe Goal, '#total_checkins', skip_before: true do
   before :each do
     @goal = FactoryGirl.create :goal
     FactoryGirl.create :checkin
