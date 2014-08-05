@@ -6,7 +6,7 @@ describe Checkin, 'validations' do
     checkin.goal_id = nil
     
     expect(checkin).not_to be_valid
-    expect(checkin.errors.messages[:goal_id].first).to include("can't be blank")
+    expect(checkin.errors.messages[:goal_id]).to include("can't be blank")
   end
 
   it 'should not create a checkin with a blank truncated_date' do
@@ -14,7 +14,7 @@ describe Checkin, 'validations' do
     checkin.truncated_date = nil
 
     expect(checkin).not_to be_valid
-    expect(checkin.errors.messages[:truncated_date].first).to include("can't be blank")
+    expect(checkin.errors.messages[:truncated_date]).to include("can't be blank")
   end
 
   it 'should not allow a duplicate truncated date' do
@@ -22,7 +22,7 @@ describe Checkin, 'validations' do
     dup_checkin = FactoryGirl.build :checkin
 
     expect(dup_checkin).not_to be_valid
-    expect(dup_checkin.errors.messages[:truncated_date].first).to include('has already been taken')
+    expect(dup_checkin.errors.messages[:truncated_date]).to include('has already been taken')
   end
 
   it 'should allow duplicate truncated dates if the goal id is different' do
