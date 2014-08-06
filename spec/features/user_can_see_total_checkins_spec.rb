@@ -2,9 +2,9 @@ require 'rails_helper'
 
 feature 'User goes into goal index and sees total checkins for a goal' do
   before :each do
-    FactoryGirl.create :checkin, { truncated_date: convert_to_s(DateTime.now) }
-    FactoryGirl.create :checkin, { truncated_date: convert_to_s(1.day.ago) }
-    FactoryGirl.create :checkin, { truncated_date: convert_to_s(2.days.ago) }
+    [0, 1, 2].each do |n|
+      FactoryGirl.create :checkin, { truncated_date: convert_to_s(n.days.ago) }
+    end
   end
 
   scenario 'User has already checked in several times' do
