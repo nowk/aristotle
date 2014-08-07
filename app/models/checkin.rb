@@ -7,7 +7,7 @@ class Checkin < ActiveRecord::Base
   validate :valid_date
 
   validates_uniqueness_of :truncated_date, scope: :goal_id
- 
+
   private
     def valid_date
       DateTime.strptime(truncated_date, '%m%d%Y') unless truncated_date.nil?
