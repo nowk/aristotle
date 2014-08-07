@@ -100,3 +100,15 @@ describe Goal, '#total_checkins', skip_before: true do
     expect(result).to eq(3)
   end
 end
+
+describe Goal, '#current_streak' do 
+  before :each do
+    [4, 2, 1, 0].each do |n|
+      FactoryGirl.create(:checkin, { truncated_date: convert_to_s(n.days.ago) })
+    end
+  end
+
+  it 'should return the count of consecutive days checked in leading up to today' do
+    expect(@goal.current_streak).to eq(3)
+  end
+end

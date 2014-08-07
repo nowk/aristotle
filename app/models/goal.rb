@@ -20,4 +20,8 @@ class Goal < ActiveRecord::Base
   def total_checkins
     checkins.where(goal_id: self.id).count
   end
+
+  def current_streak
+    Streak.new(checkins.select('truncated_date')).days
+  end
 end
