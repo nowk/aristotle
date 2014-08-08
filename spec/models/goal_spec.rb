@@ -35,6 +35,13 @@ describe Goal, 'validations', skip_before: true do
     different_users_goal.user_id = 2
     expect(different_users_goal).to be_valid
   end
+
+  it 'should read the cheat_days column as an Array even when empty' do
+    goal = FactoryGirl.build(:goal, { cheat_days: nil })
+    goal.save
+
+    expect(goal.cheat_days).to be_instance_of Array
+  end
 end
 
 describe Goal, '#get_checkin_for(day)', skip_before: true do

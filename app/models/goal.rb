@@ -6,6 +6,8 @@ class Goal < ActiveRecord::Base
   validates_presence_of :user_id
   validates_uniqueness_of :name, scope: :user_id
 
+  serialize :cheat_days, Array
+
   def get_checkin_for(day)
     checkins.find_by_truncated_date(day.strftime('%m%d%Y'))
   rescue NoMethodError

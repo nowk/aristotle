@@ -6,6 +6,12 @@ feature 'User sets cheat days' do
     visit edit_user_goal_path(@user.id, @goal.id)
   end
 
+  scenario 'User should be able to view edit page without any cheat days' do
+    @goal.update_attributes(cheat_days: nil)
+    visit edit_user_goal_path(@user.id, @goal.id)
+    expect(page).not_to have_checked_field 'monday'
+  end
+
   scenario 'User edits a goal and sees checkboxes for each of the days of the week' do
     expect(page).to have_selector '.cheat-days'
     expect(page.all('.day-of-week').count).to eq(7)
