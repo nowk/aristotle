@@ -11,6 +11,13 @@
     .field
       = f.text_area :description, placeholder: 'Description'
     .field
+      %h2 Cheat Days
+      %ul.cheat-days
+        - Date::DAYNAMES.each do |day|
+          %li.day-of-week
+            = check_cheat_day(day)
+            %label= day
+    .field
       - if action_name === 'new'
         = f.submit 'Create Goal'
       - else

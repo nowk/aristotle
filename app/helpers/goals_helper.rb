@@ -14,4 +14,16 @@ module GoalsHelper
   def is_today?
     DateTime.now === @goal_summary.date
   end
+
+  def check_cheat_day(day)
+    if correct_action?(action_name) and @goal.cheat_days.include?(day)
+      check_box('goal', 'cheat_days', { id: day.downcase, checked: 'checked' }, day, '')
+    else
+      check_box('goal', 'cheat_days', { id: day.downcase }, day, '')
+    end
+  end
+
+  def correct_action?(action)
+    not ['new', 'create'].include? action
+  end
 end
