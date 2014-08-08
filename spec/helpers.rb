@@ -4,10 +4,6 @@ module Helpers
   end
 
   def construct_date_array(checkins)
-    date_array = []
-    checkins.each do |checkin|
-      date_array << DateTime.strptime(checkin.truncated_date, '%m%d%Y')
-    end
-    date_array.sort.reverse
+    checkins.map { |checkin| DateTime.strptime(checkin.truncated_date, '%m%d%Y') }.sort.reverse
   end
 end
