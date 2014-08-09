@@ -4,6 +4,5 @@ FactoryGirl.define do
     name 'Goal A'
     description 'Foo'
     user_id '1'
-    cheat_days ['Monday', 'Thursday', 'Saturday']
   end
 end

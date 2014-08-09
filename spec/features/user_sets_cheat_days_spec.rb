@@ -3,6 +3,7 @@ require 'rails_helper'
 feature 'User sets cheat days' do
   before :each do
     @prechecked_days = ['Monday', 'Thursday', 'Saturday']
+    @goal.update_attributes(cheat_days: @prechecked_days)
     visit edit_user_goal_path(@user.id, @goal.id)
   end
 
