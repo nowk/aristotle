@@ -39,6 +39,7 @@ group :test do
   gem 'factory_girl_rails', '~> 4.4.1'
   gem 'rack_session_access', '~> 0.1.1'
   gem 'launchy'
+  gem 'timecop', '~> 0.7.1'
 end
 
 # Use unicorn as the app server

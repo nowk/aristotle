@@ -36,6 +36,11 @@ Rails.application.configure do
 
   config.middleware.use RackSessionAccess::Middleware
 
+  config.after_initialize do
+    t = Time.local(2008, 9, 7, 10, 5, 0)
+    Timecop.travel(t)
+  end
+
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 end
