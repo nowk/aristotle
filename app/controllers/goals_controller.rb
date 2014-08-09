@@ -12,7 +12,6 @@ class GoalsController < ApplicationController
   # GET /goals/1.json
   def show
     @goal_summary = GoalSummary.new(@goal, params[:date_string])
-  
   end
 
   # GET /goals/new
