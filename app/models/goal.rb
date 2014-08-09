@@ -24,6 +24,6 @@ class Goal < ActiveRecord::Base
   end
 
   def current_streak
-    Streak.new(checkins.select('truncated_date')).days
+    Streak.new(checkins.order('truncated_date DESC')).days
   end
 end
