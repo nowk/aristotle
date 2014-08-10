@@ -14,9 +14,13 @@
       %h2 Cheat Days
       %ul.cheat-days
         - Date::DAYNAMES.each do |day|
-          %li.day-of-week
-            = check_cheat_day(day)
-            %label= day
+          - if action_name === 'edit'
+            %li.day-of-week
+              = check_cheat_day(day)
+          - else
+            %li.day-of-week
+              = check_box_tag('goal[cheat_days][]', day, false, { id: day.downcase })
+              %label= day
     .field
       - if action_name === 'new'
         = f.submit 'Create Goal'
