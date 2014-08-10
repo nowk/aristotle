@@ -16,10 +16,6 @@ module GoalsHelper
   end
 
   def check_cheat_day(day)
-    if @goal.cheat_days.include?(day)
-      check_box('goal', 'cheat_days', { id: day.downcase, checked: 'checked' }, day, '')
-    else
-      check_box('goal', 'cheat_days', { id: day.downcase }, day, '')
-    end
+    day if @goal.cheat_days.include? day
   end
 end

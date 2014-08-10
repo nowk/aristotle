@@ -6,7 +6,8 @@ class Goal < ActiveRecord::Base
   validates_presence_of :user_id
   validates_uniqueness_of :name, scope: :user_id
 
-  serialize :cheat_days, Array
+  serialize :cheat_days, JSON
+  before_create :convert_cheat_days
 
   def get_checkin_for(day)
     checkins.find_by_truncated_date(day.strftime('%m%d%Y'))
@@ -25,5 +26,9 @@ class Goal < ActiveRecord::Base
 
   def current_streak
     Streak.new(checkins.order('truncated_date DESC')).days
+  end
+
+  def convert_cheat_days
+    self.cheat_days ||= [] if self.cheat_days.blank?
   end
 end
