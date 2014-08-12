@@ -1,6 +1,9 @@
 class PrizesController < ApplicationController
   before_action :set_prize, only: [:show, :edit, :update, :destroy]
 
+  self.responder = GoalsResponder
+  respond_to :html, :json
+
   # GET /prizes
   # GET /prizes.json
   def index
@@ -26,29 +29,21 @@ class PrizesController < ApplicationController
   def create
     @prize = Prize.new(prize_params)
 
-    respond_to do |format|
-      if @prize.save
-        format.html { redirect_to @prize, notice: 'Prize was successfully created.' }
-        format.json { render :show, status: :created, location: @prize }
-      else
-        format.html { render :new }
-        format.json { render json: @prize.errors, status: :unprocessable_entity }
-      end
+    if @prize.save
+      flash[:notice] = 'Prize was successfully created.'
     end
+
+    respond_with @prize
   end
 
   # PATCH/PUT /prizes/1
   # PATCH/PUT /prizes/1.json
   def update
-    respond_to do |format|
-      if @prize.update(prize_params)
-        format.html { redirect_to @prize, notice: 'Prize was successfully updated.' }
-        format.json { render :show, status: :ok, location: @prize }
-      else
-        format.html { render :edit }
-        format.json { render json: @prize.errors, status: :unprocessable_entity }
-      end
+    if @prize.update(prize_params)
+      flash[:notice] = 'Prize was successfully updated.'
     end
+
+    respond_with @prize
   end
 
   # DELETE /prizes/1
