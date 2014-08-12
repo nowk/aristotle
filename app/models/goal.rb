@@ -1,6 +1,7 @@
 class Goal < ActiveRecord::Base
   belongs_to :user
   has_many :checkins
+  has_many :prizes
 
   validates_presence_of :name
   validates_presence_of :user_id

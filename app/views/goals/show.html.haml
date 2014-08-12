@@ -7,5 +7,11 @@
 
 = render partial: 'day', locals: { day: @date, goal: @goal }
 
+- if @goal.prizes.any?
+  %h3 Prize(s) for this Goal
+  %ul.prize-list
+    - @goal.prizes.each do |prize|
+      %li= link_to prize.name, [current_user, @goal, prize]
+
 = link_to 'Edit', edit_user_goal_path(current_user, @goal)
 = link_to 'Back', user_goals_path(current_user)

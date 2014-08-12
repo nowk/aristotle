@@ -18,6 +18,7 @@ class PrizesController < ApplicationController
   # GET /prizes/new
   def new
     @prize = Prize.new
+    @goal = Goal.find(params[:goal_id])
   end
 
   # GET /prizes/1/edit
@@ -27,13 +28,14 @@ class PrizesController < ApplicationController
   # POST /prizes
   # POST /prizes.json
   def create
-    @prize = Prize.new(prize_params)
+    @goal = Goal.find(params[:goal_id])
+    @prize = @goal.prizes.new(prize_params)
 
     if @prize.save
       flash[:notice] = 'Prize was successfully created.'
+      redirect_to [current_user, @goal, @prize]
     end
 
-    respond_with @prize
   end
 
   # PATCH/PUT /prizes/1
@@ -60,10 +62,11 @@ class PrizesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_prize
       @prize = Prize.find(params[:id])
+      @goal = Goal.find(params[:goal_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def prize_params
-      params[:prize]
+      params[:prize].permit(:name)
     end
 end
