@@ -23,6 +23,6 @@
               %label= day
     .field
       - if action_name === 'new'
-        = f.submit 'Create Goal'
+        = f.submit 'Create Goal', id: 'save-goal'
       - else
-        = f.submit 'Update Goal'
+        = f.submit 'Update Goal', id: 'save-goal'

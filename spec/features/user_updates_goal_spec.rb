@@ -8,13 +8,13 @@ feature 'User updates goal' do
   scenario 'User updates goal with valid info' do
     fill_in 'goal[name]', with: 'BarBaz'
     fill_in 'goal[description]', with: 'This is just sample description.'
-    click_button 'Save Goal'
+    click_button 'save-goal'
     expect(page).to have_selector '.notice'
   end
 
   scenario 'User updates goal with invalid info' do
     fill_in 'goal[name]', with: ''
-    click_button 'Save Goal'
+    click_button 'save-goal'
     expect(page).to have_selector '.alert'
   end
 end
