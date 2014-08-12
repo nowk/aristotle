@@ -1,30 +1,28 @@
 class CheckinsController < ApplicationController
-  def create
-    @checkin = Checkin.new goal_id: params[:goal_id],
-      truncated_date: params[:truncated_date]
+  self.responder = CheckinResponder
 
-    respond_to do |format|
-      if @checkin.save
-        format.html { redirect_to goal_with_date_path(current_user.id, @checkin.goal_id, @checkin.truncated_date), notice: 'You just checked in! Great work!' }
-        format.json { render json: { status: 200 } }
-      else
-        format.json { render json: { status: 500 } }
-      end
+  respond_to :html, :json
+
+  def create
+    @checkin = Checkin.new goal_id: params[:goal_id], truncated_date: params[:truncated_date]
+    if @checkin.save
+      flash[:notice] = 'You just checked in! Great work!'
     end
+
+    respond_with @checkin, 
+      location: goal_with_date_path(current_user.id, @checkin.goal_id, @checkin.truncated_date)
   end
 
   def destroy
     @checkin = Checkin.find(params[:id])
     @goal = @checkin.goal
-
-    respond_to do |format|
-      if @checkin.destroy
-        format.html { redirect_to goal_with_date_path(current_user.id, @goal, @checkin.truncated_date), notice: 'Checked out for today.' }
-        format.json { render json: { status: 200, total_checkins: @goal.checkins.count } }
-      else
-        format.json { render json: { status: 500, total_checkins: @goal.checkins.count } }
-      end
+    if @checkin.destroy
+      flash[:notice] = 'Checked out for today.'
     end
+
+    respond_with @checkin, 
+      location: goal_with_date_path(current_user.id, @goal, @checkin.truncated_date), 
+      total_checkins: @goal.checkins.count
   end
 
   private
