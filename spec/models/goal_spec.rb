@@ -90,10 +90,11 @@ end
 
 describe Goal, '#total_checkins', skip_before: true do
   before :each do
-    @goal = FactoryGirl.create :goal
-    FactoryGirl.create :checkin
-    FactoryGirl.create :checkin, { truncated_date: convert_to_s(1.day.ago) }
-    FactoryGirl.create :checkin, { truncated_date: convert_to_s(2.days.ago) }
+    @user = FactoryGirl.create :newuser
+    @goal = FactoryGirl.create :newgoal, user: @user
+    FactoryGirl.create :checkin, goal: @goal
+    FactoryGirl.create :checkin, { goal: @goal, truncated_date: convert_to_s(1.day.ago) }
+    FactoryGirl.create :checkin, { goal: @goal, truncated_date: convert_to_s(2.days.ago) }
   end
 
   it 'should return a count for only this goal' do
@@ -102,7 +103,8 @@ describe Goal, '#total_checkins', skip_before: true do
   end
 
   it 'should not count checkins for a different goal_id' do
-    FactoryGirl.create :checkin, { goal_id: 2 }
+    other_goal = FactoryGirl.create :newgoal, user: @user
+    FactoryGirl.create :checkin, { goal_id: other_goal.id }
     result = @goal.total_checkins
     expect(result).to eq(3)
   end

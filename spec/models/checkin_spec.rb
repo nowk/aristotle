@@ -9,6 +9,12 @@ describe Checkin, 'validations' do
     expect(checkin.errors.messages[:goal_id]).to include("can't be blank")
   end
 
+  it "should not create a checkin if a the goal does not exist" do
+    checkin = FactoryGirl.build :checkin, goal_id: 123
+
+    expect(checkin).not_to be_valid
+  end
+
   it 'should not create a checkin with a blank truncated_date' do
     checkin = FactoryGirl.build :checkin
     checkin.truncated_date = nil
@@ -26,9 +32,14 @@ describe Checkin, 'validations' do
   end
 
   it 'should allow duplicate truncated dates if the goal id is different' do
-    checkin = FactoryGirl.create :checkin
-    different_users_checkin = FactoryGirl.build(:checkin)
-    different_users_checkin.goal_id = 2
+    user = FactoryGirl.create :newuser
+    goala = FactoryGirl.create :newgoal, user: user
+    goalb = FactoryGirl.create :newgoal, user: user
+
+    FactoryGirl.create :checkin, goal: goala
+
+    different_users_checkin = FactoryGirl.build(:checkin, goal: goalb)
+    different_users_checkin.goal_id = goalb.id
 
     expect(different_users_checkin).to be_valid
   end
