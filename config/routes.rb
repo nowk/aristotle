@@ -2,11 +2,12 @@ Rails.application.routes.draw do
   root 'pages#home'
 
   # Resources
-  resources :prizes
   resources :sessions
   resources :checkins, only: [:create, :destroy]
   resources :users do
-    resources :goals, except: :show
+    resources :goals, except: :show do
+      resources :prizes
+    end
   end
 
   # Odds n' Ends
