@@ -1,7 +1,7 @@
 class Checkin < ActiveRecord::Base
   belongs_to :goal
 
-  validates_presence_of :goal_id
+  validates_presence_of :goal, :goal_id
   validates_presence_of :truncated_date
 
   validate :valid_date

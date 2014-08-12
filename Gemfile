@@ -40,6 +40,7 @@ group :test do
   gem 'rack_session_access', '~> 0.1.1'
   gem 'launchy'
   gem 'timecop', '~> 0.7.1'
+  gem "faker"
 end
 
 # Use unicorn as the app server

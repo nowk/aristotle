@@ -2,6 +2,11 @@ class GoalsController < ApplicationController
   before_action :set_goal, only: [:show, :edit, :update, :destroy]
   before_action :prevent_future_date, only: [:show]
 
+  self.responder = GoalsResponder
+
+  respond_to :html, :json
+
+
   # GET /goals
   # GET /goals.json
   def index
@@ -28,29 +33,21 @@ class GoalsController < ApplicationController
   def create
     @goal = current_user.goals.new(goal_params)
 
-    respond_to do |format|
-      if @goal.save
-        format.html { redirect_to [current_user, :goals], notice: 'Goal was successfully created.' }
-        format.json { render :show, status: :created, location: @goal }
-      else
-        format.html { render :new }
-        format.json { render json: @goal.errors, status: :unprocessable_entity }
-      end
+    if @goal.save
+      flash["notice"] = 'Goal was successfully created.'
     end
+
+    respond_with @goal, location: [current_user, :goals]
   end
 
   # PATCH/PUT /goals/1
   # PATCH/PUT /goals/1.json
   def update
-    respond_to do |format|
-      if @goal.update(goal_params)
-        format.html { redirect_to [current_user, @goal], notice: 'Goal was successfully updated.' }
-        format.json { render :show, status: :ok, location: @goal }
-      else
-        format.html { render :edit }
-        format.json { render json: @goal.errors, status: :unprocessable_entity }
-      end
+    if @goal.update(goal_params)
+      flash["notice"] = 'Goal was successfully updated.'
     end
+
+    respond_with @goal, location: [current_user, @goal] 
   end
 
   # DELETE /goals/1
