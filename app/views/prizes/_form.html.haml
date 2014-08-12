@@ -1,0 +1,9 @@
+<%= form_for [current_user, @goal, @prize] do |f| %>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+= form_for [current_user, @goal, @prize] do |f|
+  - if @prize.errors.any?
+
