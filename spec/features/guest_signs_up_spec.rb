@@ -3,7 +3,7 @@ require 'database_cleaner'
 
 DatabaseCleaner.strategy = :truncation, { only: %w[users] }
 
-feature 'Guest signs up' do
+feature 'Guest signs up', skip_before: true do
   scenario 'valid email, password & password confirmation brings User to dashboard with confirmation dialog' do
     visit '/signup'
     fill_in 'user_email', with: 'johndoe@example.com'
