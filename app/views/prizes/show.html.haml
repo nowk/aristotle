@@ -1,0 +1,6 @@
+<%= link_to 'Back', prizes_path %>
+
+%h2{ rel: 'prize-name' }= @prize.name
+
+= link_to 'Edit', [current_user, @goal, @prize]
+= link_to 'Back', [current_user, @goal]
