@@ -41,6 +41,7 @@ group :test do
   gem 'launchy'
   gem 'timecop', '~> 0.7.1'
   gem "faker"
+  gem 'codeclimate-test-reporter', require: nil
 end
 
 # Use unicorn as the app server
