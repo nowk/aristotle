@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140812115026) do
+ActiveRecord::Schema.define(version: 20140813113828) do
 
   create_table "checkins", force: true do |t|
     t.integer  "goal_id"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20140812115026) do
     t.text     "description"
     t.integer  "user_id"
     t.string   "cheat_days"
+    t.integer  "minimum_days"
   end
 
   create_table "prizes", force: true do |t|
