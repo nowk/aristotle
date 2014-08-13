@@ -2,13 +2,13 @@ require 'rails_helper'
 
 feature 'User logs in', skip_before: true do
   before(:each) do
-    user = FactoryGirl.create(:user)
+    @user = FactoryGirl.create(:newuser)
     visit login_path
   end
 
   scenario 'valid email/password takes User to dashboard' do
-    fill_in 'email', with: 'john@example.com'
-    fill_in 'password', with: 'password'
+    fill_in 'email', with: @user.email
+    fill_in 'password', with: 'astrongpassword'
     click_button 'Login'
     expect(page).to have_selector '.dashboard'
   end

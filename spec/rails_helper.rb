@@ -68,7 +68,7 @@ RSpec.configure do |config|
     DatabaseCleaner.start
 
     unless example.metadata[:skip_before]
-      @user = FactoryGirl.create :user
+      @user = FactoryGirl.create :newuser
       @goal = FactoryGirl.create :goal
       page.set_rack_session(user_id: @user.id)
     end

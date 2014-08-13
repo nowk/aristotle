@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'User creates goal', skip_before: true do
   before(:each) do
-    user = FactoryGirl.create(:user)
+    user = FactoryGirl.create(:newuser)
     page.set_rack_session(user_id: user.id)
     visit new_user_goal_path(user.id)
   end

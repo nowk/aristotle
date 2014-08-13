@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe User, 'validations', skip_before: true do
   before(:each) do
-    @user = FactoryGirl.create(:user)
+    @user = FactoryGirl.create(:newuser)
   end
 
   it 'should not create a user with a duplicate email' do
