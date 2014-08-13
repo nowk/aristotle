@@ -10,6 +10,9 @@
       = f.text_field :name, placeholder: 'Name of Goal'
     .field
       = f.text_area :description, placeholder: 'Description'
+    - if action_name === 'new'
+      .field
+        = f.text_field :minimum_days
     .field
       %h2 Cheat Days
       %ul.cheat-days

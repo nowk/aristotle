@@ -6,6 +6,7 @@ class Goal < ActiveRecord::Base
   validates_presence_of :name
   validates_presence_of :user_id
   validates_uniqueness_of :name, scope: :user_id
+  validates_numericality_of :minimum_days, only_integer: true, unless: 'minimum_days.blank?'
 
   serialize :cheat_days, JSON
   before_create :convert_cheat_days

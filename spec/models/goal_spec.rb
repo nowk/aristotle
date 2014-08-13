@@ -42,6 +42,25 @@ describe Goal, 'validations', skip_before: true do
 
     expect(goal.cheat_days).to be_instance_of Array
   end
+
+  it 'should not accept non-integers for the minimum_days attribute' do
+    goal = FactoryGirl.build(:goal, { minimum_days: 'abc'})
+
+    expect(goal).not_to be_valid
+    expect(goal.errors.messages[:minimum_days]).to include('is not a number')
+  end
+
+  it 'should allow blank values for the minimum_days attribute' do
+    goal = FactoryGirl.build(:goal, { minimum_days: nil })
+
+    expect(goal).to be_valid
+  end
+
+  it 'should should allow integers for the minimum_days_attribute' do
+    goal = FactoryGirl.build(:goal, { minimum_days: 21 })
+
+    expect(goal).to be_valid
+  end
 end
 
 describe Goal, '#get_checkin_for(day)', skip_before: true do
