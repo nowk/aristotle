@@ -1,6 +1,5 @@
 class CheckinsController < ApplicationController
   self.responder = CheckinResponder
-
   respond_to :html, :json
 
   def create

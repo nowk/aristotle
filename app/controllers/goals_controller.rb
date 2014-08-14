@@ -1,9 +1,6 @@
 class GoalsController < ApplicationController
   before_action :set_goal, only: [:show, :edit, :update, :destroy]
   before_action :prevent_future_date, only: [:show]
-
-  self.responder = GoalsResponder
-
   respond_to :html, :json
 
 

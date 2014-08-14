@@ -1,7 +1,5 @@
 class PrizesController < ApplicationController
   before_action :set_prize, only: [:show, :edit, :update, :destroy]
-
-  self.responder = GoalsResponder
   respond_to :html, :json
 
   # GET /prizes
